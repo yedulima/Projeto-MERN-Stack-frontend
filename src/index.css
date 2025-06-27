@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-default-dark: oklch(96.8% 0.007 247.896);
+    --color-default-light: oklch(14.7% 0.004 49.25);
+
+    --color-default-dark-hover-stroke: oklch(80% 0.05 250);
+    --color-default-light-hover-stroke: oklch(30% 0.05 50);
+
+    --color-default-dark-bg: oklch(14.5% 0 0);
+    --color-default-light-bg: #fdfdfd;
+
+    --color-sidebar-active-link-dark: oklch(21% 0.034 264.665);
+    --color-sidebar-active-link-light: oklch(92.9% 0.013 255.508);
+
+    --color-sidebar-active-text-dark: oklch(86.9% 0.022 252.894);
+    --color-sidebar-active-text-light: oklch(50% 0.1 250);
+
+    --color-default-button-dark: oklch(51.1% 0.262 276.966);
+    --color-default-button-light: oklch(54.6% 0.245 262.881);
+}
+
+@layer base {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    p,
+    span {
+        @apply text-default-light dark:text-default-dark;
+        @apply transition-colors duration-300;
+    }
+
+    body {
+        @apply bg-default-light-bg dark:bg-default-dark-bg;
+    }
+
+    hr {
+        @apply border-default-light dark:border-default-dark;
+    }
+
+    button {
+        @apply bg-default-button-light dark:bg-default-button-dark cursor-pointer;
+        @apply text-white font-medium;
+    }
+}
+
+@layer components {
+    .default-bg {
+        @apply bg-default-light-bg dark:bg-default-dark-bg;
+    }
+
+    .icon {
+        @apply stroke-default-light dark:stroke-default-dark;
+        @apply transition-colors duration-300;
+    }
+
+    .sidebar {
+        @apply flex flex-col items-center gap-2;
+        li {
+            @apply rounded-2xl w-[90%] p-[6px] pl-2 cursor-pointer
+                   transition-all duration-300
+                   hover:bg-slate-200 dark:hover:bg-gray-900
+                   hover:scale-105;
+
+            &:has(.sidebar-link.active) {
+                @apply bg-sidebar-active-link-light dark:bg-sidebar-active-link-dark;
+
+                .sidebar-icon {
+                    @apply stroke-sidebar-active-text-light dark:stroke-sidebar-active-text-dark;
+                }
+                .sidebar-h3 {
+                    @apply text-sidebar-active-text-light dark:text-sidebar-active-text-dark;
+                }
+            }
+        }
+    }
+
+    .sidebar-link {
+        @apply flex items-center h-full w-full gap-3;
+    }
+
+    .sidebar-icon {
+        @apply stroke-[0.09rem] w-6 h-6;
+    }
+
+    .sidebar-h3 {
+        @apply text-[1rem] font-normal;
+    }
+}
+
+@utility flex-center {
+    @apply flex justify-center items-center;
+}
