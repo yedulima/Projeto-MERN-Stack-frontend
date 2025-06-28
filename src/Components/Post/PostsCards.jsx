@@ -1,11 +1,14 @@
 import { Card } from "./Card";
+import { useGetPosts } from "../../Hooks/useGetPosts";
 
 export const PostsCards = ({ Data, noPostMessage }) => {
+    const posts = useGetPosts(Data);
+
     return (
         <>
             <div className="flex flex-col w-full h-full gap-3">
-                {Data.length > 0 ? (
-                    Data.map((post) => {
+                {posts.length > 0 ? (
+                    posts.map((post) => {
                         return (
                             <Card
                                 key={post.id}

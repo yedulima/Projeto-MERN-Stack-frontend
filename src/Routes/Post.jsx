@@ -1,45 +1,21 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Heart, Eye } from "lucide-react";
 
 import { useNavigate } from "react-router-dom";
-
-import PostsData from "../PostsData";
+import { useGetPostsById } from "../Hooks/useGetPostsById";
 
 export const Post = () => {
     const navigate = useNavigate();
 
     const { id } = useParams();
 
-    const [post, setPost] = useState(null);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        setLoading(true);
-        const foundPost = PostsData.find((p) => p.id === id);
-
-        if (foundPost) {
-            setPost(foundPost);
-        } else {
-            setPost(null);
-            console.warn(`Post "${id}" não encontrado.`);
-        }
-        setLoading(false);
-    }, [id]);
-
-    if (loading) {
-        return (
-            <div className="flex items-center justify-center h-full text-gray-400 text-xl">
-                Carregando post...
-            </div>
-        );
-    }
+    const post = useGetPostsById(id);
 
     if (!post) {
         return (
             <div className="flex-center h-full">
                 <h2 className="text-2xl font-regular text-[#424242]">
-                    Post não encontrado!
+                    Post not found!
                 </h2>
             </div>
         );

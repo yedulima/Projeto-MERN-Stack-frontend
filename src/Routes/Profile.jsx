@@ -1,20 +1,22 @@
-import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { PostsCards } from "../Components/Post/PostsCards";
-
-import UsersData from "../UsersData";
+import { useGetUserByUsername } from "../Hooks/useGetUserByUsername.jsx";
 
 export const Profile = () => {
     const { userName } = useParams();
 
-    const [user, setUser] = useState({});
+    const user = useGetUserByUsername(userName);
 
-    useEffect(() => {
-        const foundUser = UsersData.find((u) => u.username === userName);
-
-        foundUser ? setUser(foundUser) : setUser({});
-    }, [userName]);
+    if (!user) {
+        return (
+            <div className="flex-center h-full">
+                <h2 className="text-2xl font-regular text-[#424242]">
+                    User not found!
+                </h2>
+            </div>
+        );
+    }
 
     return (
         <>
