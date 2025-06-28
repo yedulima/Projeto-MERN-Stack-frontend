@@ -2,14 +2,14 @@ import { useParams } from "react-router-dom";
 import { Heart, Eye } from "lucide-react";
 
 import { useNavigate } from "react-router-dom";
-import { useGetPostsById } from "../Hooks/useGetPostsById";
+import { useGetPostById } from "../Hooks/useGetPostById";
 
 export const Post = () => {
     const navigate = useNavigate();
 
     const { id } = useParams();
 
-    const post = useGetPostsById(id);
+    const post = useGetPostById(id);
 
     if (!post) {
         return (

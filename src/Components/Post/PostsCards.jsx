@@ -2,6 +2,7 @@ import { Card } from "./Card";
 import { useGetPosts } from "../../Hooks/useGetPosts";
 
 export const PostsCards = ({ Data, noPostMessage }) => {
+    
     const posts = useGetPosts(Data);
 
     return (

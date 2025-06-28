@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { fetchPosts } from "../api.js";
 
-export const useGetPostsById = (id) => {
+export const useGetPostById = (id) => {
     const [posts, setPosts] = useState([]);
     const [post, setPost] = useState(null);
 

@@ -1,8 +1,10 @@
-import Data from "../PostsData.js";
-
 import { PostsCards } from "../Components/Post/PostsCards";
+import { useGetAllPosts } from "../Hooks/useGetAllPosts";
 
 export const Home = () => {
+    
+    const posts = useGetAllPosts();
+
     return (
         <>
             <div className="flex-center flex-col pt-10 h-[90%]">
@@ -34,7 +36,10 @@ export const Home = () => {
                 <hr className="mt-2 mb-2" />
 
                 <div className=" h-full pt-4 pb-4 mb-5">
-                    <PostsCards Data={Data} noPostMessage={"Nenhum post foi publicado no momento."} />
+                    <PostsCards
+                        Data={posts || {}}
+                        noPostMessage={"Nenhum post foi publicado no momento."}
+                    />
                 </div>
             </section>
         </>
