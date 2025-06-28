@@ -36,7 +36,7 @@ export const Sidebar = () => {
 
                 {/* Create new post */}
                 <div className="absolute flex-center left-[50%] -translate-x-1/2 w-full h-[4rem] bottom-25">
-                    <button className="w-[13rem] p-2 rounded-2xl hover:scale-105 transition-all duration-200 text-[0.95rem]">
+                    <button className="w-[13rem] p-2 rounded-2xl hover-scale-105 text-[0.95rem]">
                         New Post
                     </button>
                 </div>

@@ -90,8 +90,24 @@
     .sidebar-h3 {
         @apply text-[1rem] font-normal;
     }
+
+    .card-icon {
+        @apply stroke-[0.12rem] w-4 h-4;
+    }
+
+    .post-icon {
+        @apply stroke-[0.13rem] w-5 h-5;
+    }
 }
 
 @utility flex-center {
     @apply flex justify-center items-center;
+}
+
+@utility hover-scale-120 {
+    @apply hover:scale-120 transition-all duration-200;
+}
+
+@utility hover-scale-105 {
+    @apply hover:scale-105 transition-all duration-200;
 }

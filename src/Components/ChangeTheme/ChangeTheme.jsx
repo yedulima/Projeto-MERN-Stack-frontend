@@ -33,13 +33,13 @@ export const ChangeTheme = () => {
     return (
         <>
             <button
-                className="fixed right-11 top-5 bg-transparent w-8 h-8 hover:scale-120 transition-all duration-200"
+                className="fixed right-11 top-5 bg-transparent w-8 h-8 hover-scale-120"
                 onClick={toggleDarkMode}
             >
                 {isDarkMode ? (
-                    <Sun className="stroke-default-dark stroke-2 w-8 h-8" />
+                    <Sun className="stroke-default-dark stroke-2 w-6 h-6" />
                 ) : (
-                    <Moon className="stroke-default-light stroke-2 w-8 h-8" />
+                    <Moon className="stroke-default-light stroke-2 w-6 h-6" />
                 )}
             </button>
         </>
