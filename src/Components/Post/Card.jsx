@@ -13,7 +13,7 @@ export const Card = ({ id, title, content, author, date, likes, views }) => {
                         transition-all duration-300 cursor-pointer"
                 onClick={() => navigate(`/post/${id}`)}
             >
-                <h3 className="font-bold text-2xl">{title}</h3>
+                <h3 className="font-medium text-2xl">{title}</h3>
                 <p className="text-[0.9rem]">{content}</p>
                 <div className="flex items-center gap-1 text-[0.8rem]">
                     <span>{date}</span>
@@ -24,11 +24,15 @@ export const Card = ({ id, title, content, author, date, likes, views }) => {
                 <div className="flex gap-4">
                     <div className="flex items-center gap-1">
                         <Heart className="icon card-icon" />
-                        <span className="text-[0.9rem] select-none">{likes}</span>
+                        <span className="text-[0.9rem] select-none">
+                            {likes}
+                        </span>
                     </div>
                     <div className="flex items-center gap-1">
                         <Eye className="icon card-icon" />
-                        <span className="text-[0.9rem] select-none">{views}</span>
+                        <span className="text-[0.9rem] select-none">
+                            {views}
+                        </span>
                     </div>
                 </div>
             </div>

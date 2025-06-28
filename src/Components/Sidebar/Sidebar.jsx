@@ -21,7 +21,7 @@ export const Sidebar = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to={`/profile`} className="sidebar-link">
+                        <NavLink to={`/profile/@yedulima`} className="sidebar-link">
                             <UserRound className="icon sidebar-icon" />
                             <h3 className="sidebar-h3">Profile</h3>
                         </NavLink>
@@ -35,7 +35,7 @@ export const Sidebar = () => {
                 </ul>
 
                 {/* Create new post */}
-                <div className="absolute flex-center left-[50%] -translate-x-1/2 w-full h-[4rem] bottom-25">
+                <div className="absolute flex-center left-[50%] bottom-10 -translate-x-1/2 w-full h-[4rem]">
                     <button className="w-[13rem] p-2 rounded-2xl hover-scale-105 text-[0.95rem]">
                         New Post
                     </button>

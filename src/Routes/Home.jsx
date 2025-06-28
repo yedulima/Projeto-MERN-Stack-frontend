@@ -1,3 +1,5 @@
+import Data from "../PostsData.js";
+
 import { PostsCards } from "../Components/Post/PostsCards";
 
 export const Home = () => {
@@ -32,7 +34,7 @@ export const Home = () => {
                 <hr className="mt-2 mb-2" />
 
                 <div className=" h-full pt-4 pb-4 mb-5">
-                    <PostsCards />
+                    <PostsCards Data={Data} noPostMessage={"Nenhum post foi publicado no momento."} />
                 </div>
             </section>
         </>

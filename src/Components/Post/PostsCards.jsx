@@ -1,8 +1,6 @@
-import Data from "../../Data.js";
-
 import { Card } from "./Card";
 
-export const PostsCards = () => {
+export const PostsCards = ({ Data, noPostMessage }) => {
     return (
         <>
             <div className="flex flex-col w-full h-full gap-3">
@@ -23,7 +21,7 @@ export const PostsCards = () => {
                     })
                 ) : (
                     <p className="text-left text-gray-700 dark:text-gray-300 max-w-xl">
-                        Nenhum post foi publicado no momento.
+                        {noPostMessage}
                     </p>
                 )}
             </div>
