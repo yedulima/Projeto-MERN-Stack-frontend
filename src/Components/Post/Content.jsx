@@ -1,7 +1,7 @@
 export const Content = ({ content }) => {
     return (
         <div
-            className="text-default-light dark:text-default-dark transition-colors duration-300"
+            className="flex flex-col text-default-light dark:text-default-dark transition-colors duration-300 gap-3"
             dangerouslySetInnerHTML={{
                 __html: content || "Content not found.",
             }}
