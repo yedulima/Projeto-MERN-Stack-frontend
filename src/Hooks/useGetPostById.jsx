@@ -2,6 +2,10 @@ import { use } from "react";
 import { fetchPosts } from "../api.js";
 import { getPromiseFromCache } from "../Utils/PromiseCache.js";
 
+import Showdown from "showdown";
+
+const converter = new Showdown.Converter();
+
 const allPostsPromise = getPromiseFromCache("all-posts-data", async () => {
     const response = await fetchPosts();
 
@@ -22,7 +26,12 @@ export const useGetPostById = (id) => {
     if (foundPost) {
         return {
             id: foundPost.postId,
-            ...foundPost[1],
+            title: foundPost[1].title,
+            content: converter.makeHtml(foundPost[1].content),
+            author: foundPost[1].author,
+            date: foundPost[1].date,
+            likes: foundPost[1].likes,
+            views: foundPost[1].views,
         };
     }
 

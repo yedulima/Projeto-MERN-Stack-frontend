@@ -16,7 +16,15 @@ export const useGetAllPosts = () => {
     const allPostsData = use(allPostsPromise);
 
     const formatedPosts = Object.entries(allPostsData).map(([postId, post]) => {
-        return { id: postId, ...post };
+        return {
+            id: postId,
+            title: post.title,
+            description: post.description,
+            author: post.author,
+            date: post.date,
+            likes: post.likes,
+            views: post.views,
+        };
     });
 
     return formatedPosts;

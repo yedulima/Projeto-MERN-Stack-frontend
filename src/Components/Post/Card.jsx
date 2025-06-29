@@ -2,7 +2,7 @@ import { Heart, Eye } from "lucide-react";
 
 import { useNavigate } from "react-router-dom";
 
-export const Card = ({ id, title, content, author, date, likes, views }) => {
+export const Card = ({ id, title, description, author, date, likes, views }) => {
     const navigate = useNavigate();
 
     return (
@@ -14,7 +14,7 @@ export const Card = ({ id, title, content, author, date, likes, views }) => {
                 onClick={() => navigate(`/post/${id}`)}
             >
                 <h3 className="font-medium text-2xl">{title || "Title not found"}</h3>
-                <p className="text-[0.9rem]">{content || "Content not found"}</p>
+                <p className="text-[0.9rem]">{description || "Description not found"}</p>
                 <div className="flex items-center gap-1 text-[0.8rem]">
                     <span>{date || "12/12/2012"}</span>
                     <span>

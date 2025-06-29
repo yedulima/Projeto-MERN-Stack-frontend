@@ -22,8 +22,13 @@ export const useGetUserByUsername = (username) => {
     if (foundUser) {
         const transformedPosts = foundUser.posts
             ? Object.entries(foundUser.posts).map(([id, post]) => ({
-                  id,
-                  ...post,
+                  id: id,
+                  title: post.title,
+                  description: post.description,
+                  author: post.author,
+                  date: post.date,
+                  likes: post.likes,
+                  views: post.views,
               }))
             : [];
 

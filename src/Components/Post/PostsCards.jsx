@@ -10,7 +10,7 @@ export const PostsCards = ({ Data }) => {
                             key={post.id}
                             id={post.id}
                             title={post.title}
-                            content={post.content}
+                            description={post.description}
                             author={post.author}
                             date={post.date}
                             likes={post.likes}
