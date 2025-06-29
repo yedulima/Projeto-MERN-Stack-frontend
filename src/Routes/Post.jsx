@@ -22,7 +22,13 @@ export const Post = () => {
     return (
         <>
             <div className="flex flex-col gap-4 h-full p-2">
-                <Header post={post} />
+                <Header
+                    title={post.title}
+                    author={post.author}
+                    date={post.date}
+                    likes={post.likes}
+                    views={post.views}
+                />
                 <Content content={post.content} />
             </div>
         </>
