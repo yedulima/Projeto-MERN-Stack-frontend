@@ -15,7 +15,7 @@ const ProfileContent = () => {
     return (
         <>
             <ReturnArrow />
-            <div className="flex flex-col gap-4 w-full h-full default-bg">
+            <div className="flex flex-col gap-4 w-full h-full">
                 <Header
                     name={user.name}
                     username={user.username}
