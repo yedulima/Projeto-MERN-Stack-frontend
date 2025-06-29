@@ -10,7 +10,7 @@ export const Root = () => {
             <Sidebar />
             <ChangeTheme />
 
-            <main className="flex-1 ml-[15rem] mt-[3.5rem] mr-[2rem] pl-12 pr-4 pt-5">
+            <main className="flex-1 ml-[15rem] mt-[3.5rem] mr-[2rem] pl-14 pr-6 pt-5">
                 <Outlet />
             </main>
         </div>

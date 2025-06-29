@@ -1,15 +1,11 @@
-import { Landing } from "../Components/Home/Landing";
-import { Posts } from "../Components/Home/Posts";
-
-import { useGetAllPosts } from "../Hooks/useGetAllPosts";
+import { Landing } from "../Components/Home/Landing.jsx";
+import { Posts } from "../Components/Home/Posts.jsx";
 
 export const Home = () => {
-    const posts = useGetAllPosts();
-
     return (
         <>
             <Landing />
-            <Posts posts={posts} />
+            <Posts />
         </>
     );
 };

@@ -10,12 +10,7 @@ export const Posts = ({ posts }) => {
             <hr className="mb-2" />
 
             <div className="h-full pt-4 pb-4 mb-5">
-                <PostsCards
-                    Data={posts || []}
-                    noPostMessage={
-                        "Este usuário não possui nenhum post no momento."
-                    }
-                />
+                <PostsCards Data={posts || []} />
             </div>
         </section>
     );

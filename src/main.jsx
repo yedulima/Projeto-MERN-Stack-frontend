@@ -5,11 +5,13 @@ import {
     RouterProvider,
     Navigate,
 } from "react-router-dom";
+
 import { Root } from "./Routes/Root.jsx";
-import { Profile } from "./Routes/Profile.jsx";
 import { Home } from "./Routes/Home.jsx";
-import { SavedPosts } from "./Routes/SavedPosts.jsx";
 import { Post } from "./Routes/Post.jsx";
+import { Profile } from "./Routes/Profile.jsx";
+import { SavedPosts } from "./Routes/SavedPosts.jsx";
+
 import ErrorPage from "./error_page.jsx";
 import "./index.css";
 
@@ -28,16 +30,16 @@ const router = createBrowserRouter([
                 element: <Home />,
             },
             {
+                path: "/post/:id",
+                element: <Post />,
+            },
+            {
                 path: "/profile/:userName",
                 element: <Profile />,
             },
             {
                 path: "/saves",
                 element: <SavedPosts />,
-            },
-            {
-                path: "/post/:id",
-                element: <Post />,
             },
         ],
     },

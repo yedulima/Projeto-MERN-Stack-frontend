@@ -1,33 +1,30 @@
-import { useState, useEffect } from "react";
+import { use } from "react";
 import { fetchPosts } from "../api.js";
+import { getPromiseFromCache } from "../Utils/PromiseCache.js";
+
+const allPostsPromise = getPromiseFromCache("all-posts-data", async () => {
+    const response = await fetchPosts();
+
+    if (!response || !response.data) {
+        throw new Error("Invalid response from post API.");
+    }
+
+    return response.data;
+});
 
 export const useGetPostById = (id) => {
-    const [post, setPost] = useState(null);
+    const allPostsData = use(allPostsPromise);
 
-    useEffect(() => {
-        async function getPost() {
-            const response = await fetchPosts();
+    const foundPost = Object.entries(allPostsData).find(
+        ([postId]) => postId === id
+    );
 
-            if (!response || !response.data) {
-                throw new Error(`Can't get posts. Status: ${response.status}`);
-            }
+    if (foundPost) {
+        return {
+            id: foundPost.postId,
+            ...foundPost[1],
+        };
+    }
 
-            const foundPost = Object.entries(response.data).find(
-                ([postId]) => postId === id
-            );
-
-            setPost(
-                foundPost
-                    ? {
-                          id: foundPost.postId,
-                          ...foundPost[1],
-                      }
-                    : null
-            );
-        }
-
-        getPost();
-    }, [id]);
-
-    return post;
+    return null;
 };

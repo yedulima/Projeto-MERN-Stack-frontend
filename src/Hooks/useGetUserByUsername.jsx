@@ -1,44 +1,41 @@
-import { useState, useEffect } from "react";
+import { use } from "react";
 import { fetchUsers } from "../api.js";
+import { getPromiseFromCache } from "../Utils/PromiseCache.js";
+
+const allUsersPromise = getPromiseFromCache("all-users-data", async () => {
+    const response = await fetchUsers();
+
+    if (!response || !response.data) {
+        throw new Error("Invalid response from user API.");
+    }
+
+    return response.data;
+});
 
 export const useGetUserByUsername = (username) => {
-    const [user, setUser] = useState(null);
+    const allUsersData = use(allUsersPromise);
 
-    useEffect(() => {
-        async function getUser() {
-            const response = await fetchUsers();
+    const foundUser = Object.values(allUsersData).find(
+        (user) => user.username === username
+    );
 
-            if (!response || !response.data) {
-                throw new Error(`Can't get user. Status: ${response.status}`);
-            }
+    if (foundUser) {
+        const transformedPosts = foundUser.posts
+            ? Object.entries(foundUser.posts).map(([id, post]) => ({
+                  id,
+                  ...post,
+              }))
+            : [];
 
-            const foundUser = Object.values(response.data).find(
-                (user) => user.username === username
-            );
+        return {
+            name: foundUser.name,
+            username: foundUser.username,
+            bio: foundUser.bio,
+            followers: foundUser.followers,
+            following: foundUser.following,
+            posts: transformedPosts,
+        };
+    }
 
-            setUser(
-                foundUser
-                    ? {
-                          name: foundUser.name,
-                          username: foundUser.username,
-                          bio: foundUser.bio,
-                          followers: foundUser.followers,
-                          following: foundUser.following,
-                          posts: Object.entries(foundUser.posts).map(
-                              ([id, post]) => {
-                                  return {
-                                      id: id,
-                                      ...post,
-                                  };
-                              }
-                          ),
-                      }
-                    : null
-            );
-        }
-
-        getUser();
-    }, [username]);
-
-    return user;
+    return null;
 };
