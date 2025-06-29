@@ -5,11 +5,11 @@ export const useGetPostById = (id) => {
     const [post, setPost] = useState(null);
 
     useEffect(() => {
-        async function getPosts() {
+        async function getPost() {
             const response = await fetchPosts();
 
             if (!response || !response.data) {
-                throw new Error(`Can't get post. Status: ${response.status}`);
+                throw new Error(`Can't get posts. Status: ${response.status}`);
             }
 
             const foundPost = Object.entries(response.data).find(
@@ -26,7 +26,7 @@ export const useGetPostById = (id) => {
             );
         }
 
-        getPosts();
+        getPost();
     }, [id]);
 
     return post;
