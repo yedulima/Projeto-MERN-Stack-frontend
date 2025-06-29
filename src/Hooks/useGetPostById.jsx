@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { fetchPosts } from "../api.js";
 
 export const useGetPostById = (id) => {
-    const [posts, setPosts] = useState([]);
     const [post, setPost] = useState(null);
 
     useEffect(() => {
@@ -10,29 +9,25 @@ export const useGetPostById = (id) => {
             const response = await fetchPosts();
 
             if (!response || !response.data) {
-                console.error(`Can't get post. Status: ${response.status}`);
+                throw new Error(`Can't get post. Status: ${response.status}`);
             }
 
-            const postArray = Object.entries(response.data).map(
-                ([postId, post]) => {
-                    return {
-                        id: postId,
-                        ...post,
-                    };
-                }
+            const foundPost = Object.entries(response.data).find(
+                ([postId]) => postId === id
             );
 
-            setPosts(postArray);
+            setPost(
+                foundPost
+                    ? {
+                          id: foundPost.postId,
+                          ...foundPost[1],
+                      }
+                    : null
+            );
         }
 
         getPosts();
-    }, []);
-
-    useEffect(() => {
-        const foundPost = posts.find((p) => p.id === id);
-
-        setPost(foundPost || null);
-    }, [posts, id]);
+    }, [id]);
 
     return post;
 };

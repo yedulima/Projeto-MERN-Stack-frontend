@@ -2,30 +2,43 @@ import { useState, useEffect } from "react";
 import { fetchUsers } from "../api.js";
 
 export const useGetUserByUsername = (username) => {
-    const [users, setUsers] = useState([]);
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        async function getUsers() {
+        async function getUser() {
             const response = await fetchUsers();
 
             if (!response || !response.data) {
-                console.error(`Can't get user. Status: ${response.status}`);
+                throw new Error(`Can't get user. Status: ${response.status}`);
             }
 
-            const userArray = Object.values(response.data);
+            const foundUser = Object.values(response.data).find(
+                (user) => user.username === username
+            );
 
-            setUsers(userArray);
+            setUser(
+                foundUser
+                    ? {
+                          name: foundUser.name,
+                          username: foundUser.username,
+                          bio: foundUser.bio,
+                          followers: foundUser.followers,
+                          following: foundUser.following,
+                          posts: Object.entries(foundUser.posts).map(
+                              ([id, post]) => {
+                                  return {
+                                      id: id,
+                                      ...post,
+                                  };
+                              }
+                          ),
+                      }
+                    : null
+            );
         }
 
-        getUsers();
-    }, []);
-
-    useEffect(() => {
-        const foundUser = users.find((p) => p.username === username);
-
-        setUser(foundUser || null);
-    }, [users, username]);
+        getUser();
+    }, [username]);
 
     return user;
 };
