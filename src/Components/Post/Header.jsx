@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Heart, Eye } from "lucide-react";
 
-export const Header = ({ title, author, date, likes, views }) => {
+export const Header = ({ title, description, author, date, likes, views }) => {
     const navigate = useNavigate();
 
     return (
@@ -25,6 +25,7 @@ export const Header = ({ title, author, date, likes, views }) => {
                     at {date || "31/12/2025"}
                 </span>
             </div>
+
             <div className="flex gap-4">
                 <div className="flex items-center gap-1">
                     <Heart className="icon post-icon cursor-pointer" />
@@ -38,6 +39,10 @@ export const Header = ({ title, author, date, likes, views }) => {
                         {views || 0}
                     </span>
                 </div>
+            </div>
+
+            <div className="w-[60%] max-h-[15rem] font-light text-[0.95rem]">
+                <p>{description || ""}</p>
             </div>
         </>
     );

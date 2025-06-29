@@ -27,6 +27,7 @@ export const useGetPostById = (id) => {
         return {
             id: foundPost.postId,
             title: foundPost[1].title,
+            description: foundPost[1].description,
             content: converter.makeHtml(foundPost[1].content),
             author: foundPost[1].author,
             date: foundPost[1].date,

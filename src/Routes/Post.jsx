@@ -18,11 +18,15 @@ const PostContent = () => {
             <div className="flex flex-col gap-4 h-full p-2">
                 <Header
                     title={post.title}
+                    description={post.description}
                     author={post.author}
                     date={post.date}
                     likes={post.likes}
                     views={post.views}
                 />
+
+                <hr className="mt-2 mb-2" />
+
                 <Content content={post.content} />
             </div>
         </>
