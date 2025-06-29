@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 
+import { ReturnArrow } from "../Components/ReturnArrow/ReturnArrow.jsx";
 import { Header } from "../Components/Profile/Header.jsx";
 import { Posts } from "../Components/Profile/Posts.jsx";
 
@@ -21,6 +22,7 @@ export const Profile = () => {
 
     return (
         <>
+            <ReturnArrow />
             <div className="flex flex-col gap-4 p-2 w-full h-full default-bg">
                 <Header
                     name={user.name}

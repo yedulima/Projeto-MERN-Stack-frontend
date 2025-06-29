@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 
+import { ReturnArrow } from "../Components/ReturnArrow/ReturnArrow.jsx";
 import { Header } from "../Components/Post/Header";
 import { Content } from "../Components/Post/Content";
 
@@ -21,6 +22,7 @@ export const Post = () => {
 
     return (
         <>
+            <ReturnArrow />
             <div className="flex flex-col gap-4 h-full p-2">
                 <Header
                     title={post.title}
